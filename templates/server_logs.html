@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Server Logs</title>
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Server Logs</h1>
+    <pre>
+        {% for log in logs %}
+        {{ log }}
+        {% endfor %}
+    </pre>
+    <a href="/" class="btn btn-primary">Back</a>
+</div>
+</body>
+</html>
