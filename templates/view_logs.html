@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agent Logs</title>
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Logs for {{ agent_id }}</h1>
+    <ul>
+        {% for log in logs %}
+        <li>{{ log }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/" class="btn btn-primary">Back</a>
+</div>
+</body>
+</html>
