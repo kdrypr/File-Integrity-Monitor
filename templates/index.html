@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agent Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Agent Management</h1>
+    {% for agent_id, data in agents.items() %}
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="card-title">Agent ID: {{ agent_id }}</h5>
+            <p><b>Logs:</b> {{ data.logs | length }}</p>
+            <p><b>Rules:</b></p>
+            <ul>
+                {% for rule in data.policies %}
+                <li>
+                    {{ rule.name }} - {{ rule.directory }} ({{ rule.action }})
+                    <form action="{{ url_for('delete_rule', agent_id=agent_id, rule_name=rule.name) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+            <a href="{{ url_for('add_rule', agent_id=agent_id) }}" class="btn btn-success">Add Rule</a>
+            <a href="{{ url_for('view_logs', agent_id=agent_id) }}" class="btn btn-primary">View Logs</a>
+        </div>
+    </div>
+    {% endfor %}
+    <a href="{{ url_for('server_logs') }}" class="btn btn-info mt-3">View Server Logs</a>
+</div>
+</body>
+</html>
